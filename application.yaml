@@ -11,16 +11,7 @@ management:
     enabled: true  # Enable tracing
     sampling:
       probability: 1.0
-  endpoints:
-    web:
-      exposure:
-        include: prometheus
-  metrics:
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: true
+  
 logging:
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
