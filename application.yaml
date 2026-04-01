@@ -6,7 +6,27 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+      
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 
+  opentelemetry:
+    resource-attributes:
+      deployment.environment: local
+
+    tracing:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces
+          transport: http
+
+logging:
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}] "
+  include-application-name: false
+  
 okta:
   oauth2:
     issuer: https://dev-09599453.okta.com/oauth2/default
