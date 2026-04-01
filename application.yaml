@@ -15,6 +15,9 @@ management:
   opentelemetry:
     resource-attributes:
       deployment.environment: local
+    metrics:
+      export:
+        enabled: false
 
     tracing:
       export:
